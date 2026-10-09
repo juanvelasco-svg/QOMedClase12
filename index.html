@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aminoácidos y Proteínas | Química Orgánica</title>
+<style>
+    :root {
+        --QOMed-gold: #D4AF37;
+        --QOMed-dark: #1a1a2e;
+        --QOMed-blue: #16213e;
+        --QOMed-light: #0f3460;
+        --accent: #e94560;
+        --text: #2c3e50;
+        --white: #ffffff;
+        --sand: #f4e9c1;
+        --shadow: rgba(0, 0, 0, 0.15);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ===== SANGRÍA DE VIÑETAS Y LISTAS ===== */
+    ul:not(.map-tree), ol {
+        padding-left: 2.4rem;
+        margin: 0.5rem 0 1rem;
+    }
+    ul:not(.map-tree) { list-style: none; }
+    ul:not(.map-tree) li, ol li { margin: 0.45rem 0; }
+
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+    header { background: linear-gradient(135deg, var(--QOMed-dark) 0%, var(--QOMed-blue) 100%); color: var(--white); padding: 2rem; text-align: center; box-shadow: 0 6px 20px var(--shadow); position: relative; overflow: hidden; border-bottom: 5px solid var(--QOMed-gold); }
+    .logo-container { display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .logo-QOMed { width: 120px; height: auto; background: var(--white); border-radius: 50%; padding: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; text-shadow: 3px 3px 6px rgba(0,0,0,0.3); color: var(--QOMed-gold); }
+    .subtitle { font-size: 1.2rem; opacity: 0.95; font-weight: 300; }
+    .nav-container { background: var(--QOMed-blue); padding: 1rem; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px var(--shadow); }
+    .nav-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; max-width: 1400px; margin: 0 auto; }
+    .nav-btn { background: var(--white); color: var(--QOMed-dark); border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
+    .nav-btn:hover, .nav-btn.active { background: var(--QOMed-gold); color: var(--QOMed-dark); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(212,175,55,0.4); }
+    .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+    .section { display: none; animation: fadeIn 0.5s ease; }
+    .section.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .card { background: var(--white); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 8px 24px var(--shadow); border-left: 6px solid var(--QOMed-gold); transition: transform 0.3s ease; }
+    .card:hover { transform: translateY(-5px); }
+    h2 { color: var(--QOMed-blue); margin-bottom: 1.5rem; padding-bottom: 0.8rem; border-bottom: 3px solid var(--QOMed-gold); display: flex; align-items: center; gap: 0.8rem; font-size: 2rem; }
+    h3 { color: var(--QOMed-light); margin: 1.5rem 0 1rem; font-size: 1.5rem; }
+    .molecule-img { max-width: 100%; height: auto; border-radius: 12px; margin: 1rem 0; box-shadow: 0 4px 12px var(--shadow); }
+    .img-container { text-align: center; margin: 2rem 0; }
+    .calculator { background: linear-gradient(135deg, #fff9f5 0%, #fff0e8 100%); border: 3px solid var(--QOMed-gold); border-radius: 16px; padding: 2rem; margin: 2rem 0; }
+    .calc-title { color: var(--QOMed-blue); font-size: 1.6rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.8rem; }
+    .calc-input-group { margin: 1rem 0; }
+    .calc-input-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--QOMed-dark); }
+    .calc-input-group input, .calc-input-group select { width: 100%; padding: 0.8rem; border: 2px solid var(--sand); border-radius: 8px; font-size: 1rem; transition: border-color 0.3s; }
+    .calc-input-group input:focus, .calc-input-group select:focus { outline: none; border-color: var(--QOMed-gold); }
+    .calc-button { background: var(--QOMed-blue); color: var(--white); border: none; padding: 1rem 2rem; border-radius: 30px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin-top: 1rem; transition: all 0.3s ease; box-shadow: 0 4px 12px var(--shadow); }
+    .calc-button:hover { background: var(--QOMed-gold); color: var(--QOMed-dark); transform: translateY(-2px); }
+    .calc-result { background: var(--white); border-left: 5px solid var(--accent); padding: 1.5rem; margin-top: 1.5rem; border-radius: 8px; font-size: 1.1rem; display: none; }
+    .calc-result.show { display: block; animation: slideIn 0.5s ease; }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px var(--shadow); }
+    th { background: linear-gradient(135deg, var(--QOMed-blue) 0%, var(--QOMed-light) 100%); color: var(--white); padding: 1.2rem; text-align: left; font-weight: 600; }
+    td { padding: 1rem 1.2rem; border-bottom: 1px solid #eee; transition: background 0.3s; }
+    tr:hover td { background: #f8fff0; }
+    .info-box { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #2196f3; padding: 1.5rem; margin: 1.5rem 0; border-radius: 0 12px 12px 0; }
+    .tip-box { background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%); border-left: 5px solid #ffc107; padding: 1.5rem; margin: 1.5rem 0; border-radius: 0 12px 12px 0; }
+    .bio-box { background: linear-gradient(135deg, #d1ecf1 0%, #a8dadc 100%); border-left: 5px solid #17a2b8; padding: 1.5rem; margin: 1.5rem 0; border-radius: 0 12px 12px 0; }
+    .pharma-box { background: linear-gradient(135deg, #f8d7da 0%, #f1aeb5 100%); border-left: 5px solid #dc3545; padding: 1.5rem; margin: 1.5rem 0; border-radius: 0 12px 12px 0; }
+    .problem-box { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 5px solid #28a745; padding: 1.5rem; margin: 1.5rem 0; border-radius: 0 12px 12px 0; }
+    details.solution { margin-top: 1rem; background: #f8f9fa; border: 2px solid var(--QOMed-light); border-radius: 10px; padding: 0.8rem 1.2rem; }
+    details.solution summary { cursor: pointer; font-weight: 700; color: var(--QOMed-light); }
+    details.solution[open] summary { margin-bottom: 0.8rem; border-bottom: 1px dashed var(--QOMed-light); padding-bottom: .4rem; }
+    .mnemonic-card { background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%); border: 3px solid var(--accent); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; position: relative; overflow: hidden; }
+    .mnemonic-title { color: var(--accent); font-weight: 700; margin-bottom: 0.8rem; font-size: 1.2rem; }
+    .glossary-term { background: var(--white); border: 2px solid var(--QOMed-gold); border-radius: 8px; padding: 1rem; margin: 0.8rem 0; cursor: pointer; transition: all 0.3s; }
+    .glossary-term:hover { background: #fff9e6; transform: translateX(5px); }
+    .glossary-definition { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--QOMed-gold); }
+    .glossary-definition.show { display: block; animation: fadeIn 0.3s ease; }
+    .error-card { background: linear-gradient(135deg, #ffe6e6 0%, #ffb3b3 100%); border-left: 5px solid #dc3545; padding: 1.5rem; margin: 1rem 0; border-radius: 0 12px 12px 0; }
+    .error-title { color: #dc3545; font-weight: 700; margin-bottom: 0.5rem; }
+    .correction { background: #d4edda; border-left: 3px solid #28a745; padding: 1rem; margin-top: 1rem; border-radius: 0 8px 8px 0; }
+    .quiz-container { background: linear-gradient(135deg, var(--QOMed-blue) 0%, var(--QOMed-light) 100%); color: var(--white); border-radius: 16px; padding: 2rem; margin: 2rem 0; }
+    .quiz-question { font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 600; }
+    .quiz-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+    .quiz-option { background: var(--white); color: var(--text); border: 3px solid transparent; padding: 1.2rem; border-radius: 10px; cursor: pointer; transition: all 0.3s ease; font-weight: 500; }
+    .quiz-option:hover:not(:disabled) { border-color: var(--QOMed-gold); transform: translateY(-3px); }
+    .quiz-option:disabled { cursor: not-allowed; opacity: 0.95; }
+    .quiz-option.correct { background: #4caf50; color: white; border-color: #2e7d32; }
+    .quiz-option.incorrect { background: #f44336; color: white; border-color: #c62828; }
+    .quiz-progress { max-width: 720px; margin: 0 auto 1rem; }
+    .quiz-progress-bar-bg { height: 10px; background: #e0e0e0; border-radius: 5px; overflow: hidden; }
+    .quiz-progress-bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--QOMed-gold), var(--accent)); transition: width 0.4s; }
+    .quiz-stats { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin: 1rem 0; }
+    .quiz-stat { padding: 0.6rem 1.2rem; border-radius: 20px; font-weight: 700; color: #fff; font-size: 0.95rem; background: var(--QOMed-light); }
+    .footer { background: var(--QOMed-dark); color: var(--white); text-align: center; padding: 2.5rem; margin-top: 3rem; border-top: 5px solid var(--QOMed-gold); }
+    .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1.5rem 0; border-radius: 12px; box-shadow: 0 4px 12px var(--shadow); }
+    .table-responsive table { min-width: 600px; width: 100%; margin: 0; }
+    .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .tab { background: var(--sand); border: none; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+    .tab.active { background: var(--QOMed-gold); color: var(--QOMed-dark); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.5s ease; }
+    .fc-stats { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin: 1rem 0; }
+    .fc-stat { padding: 0.6rem 1.2rem; border-radius: 20px; font-weight: 700; color: #fff; font-size: 0.95rem; }
+    .fc-stat.good { background: #28a745; } .fc-stat.bad { background: #dc3545; } .fc-stat.pending { background: #6c757d; } .fc-stat.total { background: var(--QOMed-light); }
+    .fc-progress { height: 10px; background: #e0e0e0; border-radius: 5px; overflow: hidden; max-width: 720px; margin: 0 auto 1.5rem; }
+    .fc-progress-bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--QOMed-gold), var(--accent)); transition: width 0.4s; }
+    .flashcard-scene { perspective: 1400px; max-width: 720px; height: 320px; margin: 0 auto 1.5rem; }
+    .flashcard { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.6s; cursor: pointer; }
+    .flashcard.flipped { transform: rotateY(180deg); }
+    .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 16px; padding: 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: auto; box-shadow: 0 8px 24px var(--shadow); font-size: 1.15rem; }
+    .fc-front { background: linear-gradient(135deg, var(--QOMed-blue), var(--QOMed-light)); color: #fff; border: 3px solid var(--QOMed-gold); }
+    .fc-back { background: linear-gradient(135deg, #fff9e6, var(--sand)); color: var(--text); border: 3px solid var(--QOMed-gold); transform: rotateY(180deg); }
+    .fc-label { font-size: 0.85rem; letter-spacing: 2px; font-weight: 800; opacity: 0.8; margin-bottom: 1rem; }
+    .fc-hint { margin-top: 1rem; font-size: 0.85rem; opacity: 0.7; font-style: italic; }
+    .fc-controls { display: flex; gap: 1rem; justify-content: center; margin-bottom: 1rem; flex-wrap: wrap; }
+    .fc-btn { border: none; padding: 0.9rem 2rem; border-radius: 30px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all 0.3s; color: #fff; }
+    .fc-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .fc-btn.good { background: #28a745; } .fc-btn.bad { background: #dc3545; }
+    .fc-btn:not(:disabled):hover { transform: translateY(-3px); }
+    .fc-link { background: none; border: none; color: #6c757d; text-decoration: underline; cursor: pointer; font-size: 0.85rem; margin-top: 1rem; }
+
+    /* ===== MAPA CONCEPTUAL ===== */
+    .map-container { overflow-x: auto; padding: 1rem 0; }
+    .map-tree, .map-tree ul { list-style: none; margin: 0; padding-left: 0; }
+    .map-tree ul { display: none; padding-left: 1.6rem; margin: 0.6rem 0 0; border-left: 3px solid var(--QOMed-gold); }
+    .map-tree li.open > ul { display: block; animation: fadeIn 0.4s ease; }
+    .map-tree li { margin: 0.4rem 0; }
+    .map-node { display: inline-block; background: var(--QOMed-blue); color: #fff; padding: 0.6rem 1.1rem; border-radius: 10px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+    .map-node:hover { background: var(--QOMed-gold); color: var(--QOMed-dark); transform: translateX(4px); }
+    .map-node.root { background: var(--accent); font-size: 1.15rem; }
+    .map-node.branch { background: var(--QOMed-light); }
+    .map-leaf { display: inline-block; background: var(--sand); color: var(--text); padding: 0.45rem 0.9rem; border-radius: 8px; font-size: 0.95rem; border: 2px solid var(--QOMed-gold); }
+    li.has-children > .map-node::before { content: '▶ '; font-size: 0.8em; }
+    li.has-children.open > .map-node::before { content: '▼ '; font-size: 0.8em; }
+
+    @media (max-width: 768px) {
+        h1 { font-size: 1.8rem; } h2 { font-size: 1.5rem; } h3 { font-size: 1.2rem; }
+        .logo-container { flex-direction: column; gap: 1rem; } .logo-QOMed { width: 80px; }
+        .container { padding: 1rem; } .card { padding: 1.5rem; }
+        .nav-buttons { gap: 0.5rem; } .nav-btn { padding: 0.6rem 1rem; font-size: 0.85rem; }
+        .quiz-options { grid-template-columns: 1fr; }
+        .tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 0.5rem; }
+        .tab { flex-shrink: 0; padding: 0.6rem 1rem; font-size: 0.9rem; }
+        .flashcard-scene { height: 360px; } .fc-face { font-size: 1rem; padding: 1rem; }
+    }
+    @media (max-width: 480px) {
+        h1 { font-size: 1.4rem; } .subtitle { font-size: 0.9rem; } header { padding: 1rem; }
+        .card { padding: 1rem; } .nav-btn { padding: 0.5rem 0.7rem; font-size: 0.8rem; }
+    }
+</style>
+</head>
+<body>
+<header>
+    <div class="logo-container">
+        <img src="Logo-QOMed.png" alt="Logo QOMed" class="logo-QOMed">
+        <div>
+            <h1>Química Orgánica</h1>
+            <p class="subtitle">Especializada para alumnos de Medicina</p>
+            <p class="subtitle">Capítulo 12: Aminoácidos y Proteínas</p>
+        </div>
+    </div>
+</header>
+
+<nav class="nav-container">
+    <div class="nav-buttons">
+        <button class="nav-btn active" onclick="showSection('inicio', this)">🏠 Inicio</button>
+        <button class="nav-btn" onclick="showSection('conceptos', this)">📚 Conceptos</button>
+        <button class="nav-btn" onclick="showSection('mapa', this)">🗺️ Mapa Conceptual</button>
+        <button class="nav-btn" onclick="showSection('flashcards', this)">🃏 Flashcards</button>
+        <button class="nav-btn" onclick="showSection('calculadoras', this)">🧮 Herramientas</button>
+        <button class="nav-btn" onclick="showSection('aplicaciones', this)">🏥 Aplicaciones</button>
+        <button class="nav-btn" onclick="showSection('mnemotecnias', this)">🧠 Mnemotecnias</button>
+        <button class="nav-btn" onclick="showSection('glosario', this)">📖 Glosario</button>
+        <button class="nav-btn" onclick="showSection('errores', this)">⚠️ Errores Comunes</button>
+        <button class="nav-btn" onclick="showSection('bibliografia', this)">📚 Bibliografía</button>
+        <button class="nav-btn" onclick="showSection('quiz', this)">🎯 Quiz</button>
+    </div>
+</nav>
+
+<div class="container">
+
+<!-- ============ INICIO ============ -->
+<section id="inicio" class="section active">
+    <div class="card">
+        <h2>🎯 Objetivos de la Sesión</h2>
+        <div class="info-box">
+            <ul style="font-size: 1.1rem; line-height: 2;">
+                <li>✓ Identificar la estructura y principales tipos de aminoácidos.</li>
+                <li>✓ Identificar las propiedades ácido-base de los aminoácidos.</li>
+                <li>✓ Identificar y calcular el punto isoeléctrico de aminoácidos y péptidos.</li>
+                <li>✓ Identificar los enlaces o puentes disulfuro.</li>
+                <li>✓ Reconocer los diferentes niveles estructurales de las proteínas.</li>
+            </ul>
+        </div>
+        <h3>🩺 Importancia para la Medicina</h3>
+        <div class="bio-box">
+            <div><strong>¿Por qué un futuro médico debe dominar los aminoácidos y proteínas?</strong>
+                <ul style="font-size: 1rem; margin-top: 1rem;">
+                    <li>• Las <strong>proteínas</strong> son las moléculas más abundantes y de funciones más diversas en los seres vivos.</li>
+                    <li>• Las <strong>enzimas y hormonas polipeptídicas</strong> dirigen y regulan el metabolismo corporal.</li>
+                    <li>• La <strong>hemoglobina y albúmina</strong> transportan moléculas esenciales en la sangre.</li>
+                    <li>• Las <strong>inmunoglobulinas</strong> combaten infecciones bacterianas y virales.</li>
+                    <li>• El <strong>colágeno</strong> forma la estructura de huesos, tendones y piel.</li>
+                    <li>• Las <strong>mutaciones de un solo aminoácido</strong> causan enfermedades como la anemia falciforme.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="tip-box"><strong>📌 Ruta de estudio sugerida:</strong> Conceptos → Mapa conceptual → Flashcards → Herramientas → Aplicaciones → Quiz (10 preguntas aleatorias de una base de 30; cada ciclo recarga preguntas nuevas).</div>
+        <div class="pharma-box"><strong>Regla de oro del capítulo:</strong> Los <strong>20 aminoácidos</strong> constituyen todas las proteínas humanas y son <strong>L-aminoácidos</strong>. El <strong>punto isoeléctrico (pI)</strong> es el pH donde la carga neta es cero (zwitterión). El <strong>enlace peptídico</strong> tiene carácter parcial de doble enlace y es rígido. La <strong>estructura primaria</strong> (secuencia) determina todas las demás estructuras y la función biológica.</div>
+    </div>
+</section>
+
+<!-- ============ CONCEPTOS ============ -->
+<section id="conceptos" class="section">
+    <div class="card">
+        <h2>📚 Conceptos Fundamentales</h2>
+        <div id="conceptos-tabs" class="tab-group">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('conceptos-tabs','sub-estructura', this)">⚛️ Estructura y Configuración</button>
+                <button class="tab" onclick="showTab('conceptos-tabs','sub-clasificacion', this)">🗂️ Clasificación</button>
+                <button class="tab" onclick="showTab('conceptos-tabs','sub-acidobase', this)">⚖️ Propiedades Ácido-Base</button>
+                <button class="tab" onclick="showTab('conceptos-tabs','sub-pI', this)">🎯 Punto Isoeléctrico</button>
+                <button class="tab" onclick="showTab('conceptos-tabs','sub-peptidico', this)">🔗 Enlace Peptídico</button>
+                <button class="tab" onclick="showTab('conceptos-tabs','sub-peptidos', this)">🧬 Péptidos</button>
+                <button class="tab" onclick="showTab('conceptos-tabs','sub-estructuras', this)">🏗️ Estructura Proteica</button>
+                <button class="tab" onclick="showTab('conceptos-tabs','sub-desnaturalizacion', this)">🔥 Desnaturalización</button>
+            </div>
+
+            <div id="sub-estructura" class="tab-content active">
+                <h3>⚛️ Estructura de los Aminoácidos</h3>
+                <div class="info-box">Los <strong>α-aminoácidos</strong> son estructuras bifuncionales constituidas por un átomo de carbono central (Cα) unido a un grupo amino, un grupo carboxilo, un hidrógeno y un grupo R (cadena lateral) característico de cada aminoácido.</div>
+                <div class="img-container">
+                    <img src="estructura-general-aminoacido.png" alt="Estructura general de un alfa-aminoácido mostrando el carbono alfa unido a NH2, COOH, H y grupo R" class="molecule-img">
+                    <p style="font-style: italic; color:#666;">El carbono α es quiral (excepto en la glicina) y presenta isómeros L y D.</p>
+                </div>
+                <div class="tip-box">
+                    <strong>Configuración absoluta:</strong> Casi todos los aminoácidos naturales tienen configuración <strong>(S)</strong>, con estereoquímica parecida a la del L-(-)-gliceraldehído. En la proyección Fischer, el L-aminoácido tiene el grupo <strong>NH₂ a la izquierda</strong>. Solo los L-aminoácidos forman parte de las proteínas humanas.
+                </div>
+                <div class="img-container">
+                    <img src="isomeros-D-L.png" alt="Proyección de Fischer mostrando la diferencia entre isómeros D (NH2 a la derecha) y L (NH2 a la izquierda) de un aminoácido" class="molecule-img">
+                    <p style="font-style: italic; color:#666;">En la mayoría de los seres vivos, solo los L-aminoácidos forman parte de las proteínas.</p>
+                </div>
+                <div class="bio-box">
+                    <strong>Actividad Óptica:</strong> Al ser moléculas quirales, presentan actividad óptica (dextrorrotatorias o levorrotatorias). La notación (D,L) define la configuración absoluta, <strong>no</strong> la actividad óptica.
+                </div>
+            </div>
+
+            <div id="sub-clasificacion" class="tab-content">
+                <h3>🗂️ Clasificación de los 20 Aminoácidos</h3>
+                <div class="info-box">Las proteínas están construidas por el mismo grupo de 20 aminoácidos, clasificados según la polaridad de su cadena lateral (grupo R).</div>
+                <div class="img-container">
+                    <img src="clasificacion-aminoacidos.png" alt="Tabla de clasificación de los 20 aminoácidos en no polares, polares neutros, ácidos y básicos" class="molecule-img">
+                    <p style="font-style: italic; color:#666;">Clasificación basada en la polaridad y carga de la cadena lateral a pH fisiológico.</p>
+                </div>
+                <div class="pharma-box"><strong>⚠️ Aminoácidos Esenciales:</strong> Los seres humanos no podemos biosintetizarlos y debemos obtenerlos de la dieta. Las proteínas que los aportan todos en proporciones correctas se llaman <strong>proteínas completas</strong> (carne, pescado, leche, huevos).</div>
+            </div>
+
+            <div id="sub-acidobase" class="tab-content">
+                <h3>⚖️ Propiedades Ácido-Base</h3>
+                <div class="info-box">Los aminoácidos son <strong>anfipróticos</strong>: pueden reaccionar como ácidos o como bases. Son solubles en agua, cristalinos y con alto punto de fusión.</div>
+                <div class="img-container">
+                    <img src="zwitterion-formacion.png" alt="Equilibrio ácido-base de un aminoácido mostrando la forma catiónica (pH bajo), zwitterión (pH neutro) y aniónica (pH alto)" class="molecule-img">
+                    <p style="font-style: italic; color:#666;">En pH neutro, predomina la forma dipolar o Zwitterión (grupo amino protonado y carboxilo desprotonado).</p>
+                </div>
+                <div class="tip-box">
+                    <strong>Curva de valoración de la Glicina:</strong> El pH controla la carga: catiónica por debajo de pH=2.3; aniónica por encima de pH=9.6 y zwitteriónica entre pH=2.3 y 9.6. El pH isoeléctrico es 6.0.
+                </div>
+                <div class="img-container">
+                    <img src="curva-valoracion-glicina.png" alt="Gráfico de la curva de valoración de la glicina mostrando los pKa1 (2.3) y pKa2 (9.6) y el punto isoeléctrico en 6.0" class="molecule-img">
+                    <p style="font-style: italic; color:#666;">El pI se encuentra en el punto medio entre los dos pKa que flanquean la especie zwitteriónica.</p>
+                </div>
+            </div>
+
+            <div id="sub-pI" class="tab-content">
+                <h3>🎯 Cálculo del Punto Isoeléctrico (pI)</h3>
+                <div class="info-box">El <strong>punto isoeléctrico (pI)</strong> es el pH al que el aminoácido se encuentra en equilibrio como zwitterión, con una <strong>carga neta de cero</strong>.</div>
+                <div class="tip-box">
+                    <strong>Para aminoácidos sin cadena lateral ionizable</strong> (ej. alanina): El pI es el promedio de los dos valores de pKa. <br>
+                    <strong>Para aminoácidos con cadena lateral ionizable:</strong> El pI será el promedio de los dos valores de pKa de los grupos que se ionizan similarmente.
+                </div>
+                <div class="img-container">
+                    <img src="calculo-pI-ejemplos.png" alt="Ejemplos de cálculo de pI para lisina (básico) y ácido glutámico (ácido) promediando los pKa adecuados" class="molecule-img">
+                    <p style="font-style: italic; color:#666;">Para la lisina (básica) se promedian los dos pKa más altos; para el ácido glutámico (ácido), los dos más bajos.</p>
+                </div>
+                <div class="bio-box">
+                    <strong>Electroforesis de Aminoácidos:</strong> Técnica de separación basada en el pI. A un pH determinado, las moléculas cargadas positivamente migran al <strong>cátodo</strong> (polo -), las negativas al <strong>ánodo</strong> (polo +), y las que están en su pI no se mueven.
+                </div>
+                <div class="img-container">
+                    <img src="electroforesis-aminoacidos.png" alt="Representación de la separación electroforética de alanina, lisina y ácido aspártico a pH 6" class="molecule-img">
+                    <p style="font-style: italic; color:#666;">A pH 6: Lisina (catiónica) va al cátodo, Aspártico (aniónico) al ánodo, Alanina (pI≈6) no se mueve.</p>
+                </div>
+            </div>
+
+            <div id="sub-peptidico" class="tab-content">
+                <h3>🔗 El Enlace Peptídico</h3>
+                <div class="info-box">Los aminoácidos se unen mediante "enlaces amida secundaria" entre las funciones α-carboxilo y α-amino de los aminoácidos adyacentes, con eliminación de agua.</div>
+                <div class="img-container">
+                    <img src="formacion-enlace-peptidico.png" alt="Reacción de condensación entre dos aminoácidos formando un dipéptido y una molécula de agua" class="molecule-img">
+                    <p style="font-style: italic; color:#666;">Reacción de formación del enlace peptídico entre el C-carboxilo de uno y el N-amino del siguiente.</p>
+                </div>
+                <div class="tip-box">
+                    <strong>Estabilización por resonancia:</strong> La resonancia de la amida le da gran estabilidad, disminuye la basicidad del nitrógeno y causa <strong>rotación restringida</strong> (carácter de doble enlace parcial) del enlace C-N. Los seis átomos del enlace peptídico son coplanares.
+                </div>
+                <div class="img-container">
+                    <img src="resonancia-enlace-peptidico.png" alt="Estructuras de resonancia del enlace peptídico mostrando el carácter de doble enlace parcial entre C y N" class="molecule-img">
+                    <p style="font-style: italic; color:#666;">El enlace peptídico es fuerte, plano y generalmente en configuración trans.</p>
+                </div>
+            </div>
+
+            <div id="sub-peptidos" class="tab-content">
+                <h3>🧬 Péptidos y su Nomenclatura</h3>
+                <div class="info-box">Los péptidos se estructuran siempre con el grupo amino terminal (N-terminal) a la izquierda y el grupo carboxilo terminal (C-terminal) a la derecha. Se nombran desde el N-terminal usando la terminación <strong>-il</strong>, excepto el último.</div>
+                <div class="img-container">
+                    <img src="nomenclatura-peptidos.png" alt="Ejemplo de nomenclatura peptídica: Tirosil-glicil-glicil-fenilalanil-leucina (YGGFL)" class="molecule-img">
+                    <p style="font-style: italic; color:#666;">Representación completa, con abreviaturas de 3 letras y con símbolos de 1 letra.</p>
+                </div>
+                <div class="bio-box">
+                    <strong>Ejemplos clínicos:</strong> La <strong>bradiquinina</strong> es un nonapéptido (RPPGFSPFR) que inhibe la inflamación. Se puede determinar su composición mediante un analizador de aminoácidos con ninhidrina.
+                </div>
+                <div class="img-container">
+                    <img src="analizador-aminoacidos-bradiquinina.png" alt="Cromatograma de un analizador de aminoácidos mostrando los picos de composición de la bradiquinina" class="mgroup-img">
+                    <p style="font-style: italic; color:#666;">Los picos de Pro, Arg y Phe son más grandes, reflejando su mayor cantidad en la secuencia.</p>
+                </div>
+            </div>
+
+            <div id="sub-estructuras" class="tab-content">
+                <h3>🏗️ Niveles Estructurales de las Proteínas</h3>
+                
+                <h3>🔵 Estructura Primaria</h3>
+                <div class="info-box">Definida por la <strong>secuencia, identidad y cantidad</strong> de aminoácidos unidos covalentemente. Basta cambiar un aminoácido para alterar las propiedades de la proteína.</div>
+
+                <h3>🟢 Estructura Secundaria</h3>
+                <div class="bio-box">
+                    <strong>α-hélice:</strong> Espiral estabilizada por puentes de H entre el C=O de una espira y el N-H de la espira siguiente (distante 3 aminoácidos). 3.6 restos por vuelta, traslación de 5.4 Å. Cadenas laterales hacia fuera.<br><br>
+                    <strong>Hoja β-plegada (β-laminar):</strong> Cadenas peptídicas adyacentes unidas por puentes de H. Grupos R orientados arriba y abajo alternativamente. Ejemplo: fibroína de la seda.
+                </div>
+                <div class="img-container">
+                    <img src="estructura-secundaria-helix-lamina.png" alt="Comparación esquemática de la estructura secundaria alfa-hélice y hoja beta-plegada" class="molecule-img">
+                    <p style="font-style: italic; color:#666;">La α-hélice es compacta; la β-laminar forma láminas bidimensionales extendidas.</p>
+                </div>
+
+                <h3>🟠 Estructura Terciaria</h3>
+                <div class="tip-box">Conformación tridimensional total de la molécula. Incluye interacciones entre cadenas laterales: <strong>puentes disulfuro, puentes de hidrógeno, fuerzas electrostáticas y de Van der Waals</strong>. Las proteínas globulares se pliegan como un ovillo; las fibrosas son alargadas.</div>
+
+                <h3>🔴 Estructura Cuaternaria</h3>
+                <div class="pharma-box">Asociación de <strong>dos o más cadenas polipeptídicas</strong> (protómeros) de la proteína activa. No están unidas covalentemente entre sí. Ejemplo clásico: la <strong>desoxihemoglobina</strong> (2 subunidades α y 2 β con sus grupos hemo).</div>
+                <div class="img-container">
+                    <img src="estructura-cuaternaria-hemoglobina.png" alt="Modelo de la estructura cuaternaria de la desoxihemoglobina mostrando las 4 subunidades (2 alfa y 2 beta)" class="molecule-img">
+                    <p style="font-style: italic; color:#666;">Las subunidades α y β se empaquetan juntas, con los grupos hemo relativamente alejados.</p>
+                </div>
+            </div>
+
+            <div id="sub-desnaturalizacion" class="tab-content">
+                <h3>🔥 Desnaturalización y Renaturalización</h3>
+                <div class="info-box">Proceso generalmente <strong>irreversible</strong> mediante el cual la proteína pierde su estructura 2°, 3° y 4°, careciendo de importancia biológica. La estructura primaria se conserva.</div>
+                <div class="tip-box">
+                    <strong>Agentes desnaturalizantes:</strong><br>
+                    • <strong>Físicos:</strong> Calor, radiaciones, grandes presiones.<br>
+                    • <strong>Químicos:</strong> Solventes orgánicos, soluciones ácidas/básicas, soluciones salinas, urea.
+                </div>
+                <div class="img-container">
+                    <img src="desnaturalizacion-ribonucleasa.png" alt="Esquema del experimento de desnaturalización y renaturalización de la ribonucleasa por Anfinsen" class="molecule-img">
+                    <p style="font-style: italic; color:#666;">La urea desnaturaliza y el mercaptoetanol rompe los disulfuros. Al eliminarlos, la proteína se renaturaliza y recupera su actividad, demostrando que la estructura primaria determina la terciaria.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ MAPA ============ -->
+<section id="mapa" class="section">
+    <div class="card">
+        <h2>🗺️ Mapa Conceptual Interactivo</h2>
+        <p style="margin-bottom:1rem;">Haz <strong>clic en cada nodo</strong> para desplegar u ocultar sus ramas.</p>
+        <div class="map-container">
+            <ul class="map-tree">
+                <li class="has-children">
+                    <div class="map-node root" onclick="toggleMap(this)">🧬 Aminoácidos y Proteínas (Capítulo 12)</div>
+                    <ul>
+                        <li class="has-children"><div class="map-node branch" onclick="toggleMap(this)">⚛️ Estructura y Configuración</div>
+                            <ul>
+                                <li><span class="map-leaf">Cα unido a: -NH₂, -COOH, -H, -R</span></li>
+                                <li><span class="map-leaf">Quiralidad: todos son quirales excepto la glicina</span></li>
+                                <li><span class="map-leaf">Configuración L (NH₂ a la izquierda en Fischer)</span></li>
+                            </ul>
+                        </li>
+                        <li class="has-children"><div class="map-node branch" onclick="toggleMap(this)">🗂️ Clasificación (20 aa)</div>
+                            <ul>
+                                <li><span class="map-leaf">No polares / hidrofóbicos</span></li>
+                                <li><span class="map-leaf">Polares neutros</span></li>
+                                <li><span class="map-leaf">Ácidos (carga negativa a pH 7)</span></li>
+                                <li><span class="map-leaf">Básicos (carga positiva a pH 7)</span></li>
+                                <li><span class="map-leaf">Esenciales (obtenidos de la dieta)</span></li>
+                            </ul>
+                        </li>
+                        <li class="has-children"><div class="map-node branch" onclick="toggleMap(this)">⚖️ Propiedades Ácido-Base</div>
+                            <ul>
+                                <li><span class="map-leaf">Anfipróticos (actúan como ácido o base)</span></li>
+                                <li><span class="map-leaf">Forma Zwitterión (carga neta 0 a pH neutro)</span></li>
+                                <li><span class="map-leaf">Punto isoeléctrico (pI): promedio de pKa relevantes</span></li>
+                                <li><span class="map-leaf">Electroforesis: separación por carga a un pH dado</span></li>
+                            </ul>
+                        </li>
+                        <li class="has-children"><div class="map-node branch" onclick="toggleMap(this)">🔗 Enlace Peptídico</div>
+                            <ul>
+                                <li><span class="map-leaf">Amida secundaria entre α-COOH y α-NH₂</span></li>
+                                <li><span class="map-leaf">Resonancia: carácter de doble enlace parcial, plano y rígido</span></li>
+                                <li><span class="map-leaf">Nomenclatura: de N-terminal a C-terminal (terminación -il)</span></li>
+                            </ul>
+                        </li>
+                        <li class="has-children"><div class="map-node branch" onclick="toggleMap(this)">🏗️ Estructura Proteica</div>
+                            <ul>
+                                <li><span class="map-leaf">Primaria: secuencia de aminoácidos</span></li>
+                                <li><span class="map-leaf">Secundaria: α-hélice y hoja β-plegada (puentes H)</span></li>
+                                <li><span class="map-leaf">Terciaria: plegamiento 3D (disulfuros, interacciones R)</span></li>
+                                <li><span class="map-leaf">Cuaternaria: asociación de protómeros (ej. hemoglobina)</span></li>
+                            </ul>
+                        </li>
+                        <li class="has-children"><div class="map-node branch" onclick="toggleMap(this)">🔥 Desnaturalización</div>
+                            <ul>
+                                <li><span class="map-leaf">Pérdida de estructuras 2°, 3° y 4° (la 1° se conserva)</span></li>
+                                <li><span class="map-leaf">Agentes: calor, pH extremo, urea, solventes</span></li>
+                                <li><span class="map-leaf">Renaturalización (Anfinsen): la 1° determina la 3°</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FLASHCARDS ============ -->
+<section id="flashcards" class="section">
+    <div class="card">
+        <h2>🃏 Flashcards de Estudio</h2>
+        <p>Haz <strong>clic en la tarjeta</strong> para voltearla y ver la respuesta. Luego califícate con honestidad.</p>
+        <div class="fc-stats">
+            <span class="fc-stat good">✅ Buenas: <span id="fc-good">0</span></span>
+            <span class="fc-stat bad">❌ Malas: <span id="fc-bad">0</span></span>
+            <span class="fc-stat pending">⏳ Pendientes: <span id="fc-left">0</span></span>
+            <span class="fc-stat total">📈 Historial: <span id="fc-hist">0 ✓ / 0 ✗</span></span>
+        </div>
+        <div class="fc-progress"><div class="fc-progress-bar" id="fc-bar"></div></div>
+        <div class="flashcard-scene" id="fc-scene">
+            <div class="flashcard" id="fc-card" onclick="flipCard()">
+                <div class="fc-face fc-front"><div class="fc-label">PREGUNTA</div><div id="fc-question"></div><span class="fc-hint">Clic para voltear ✨</span></div>
+                <div class="fc-face fc-back"><div class="fc-label">RESPUESTA</div><div id="fc-answer"></div></div>
+            </div>
+        </div>
+        <div class="fc-controls" id="fc-controls">
+            <button class="fc-btn good" id="btn-fc-good" onclick="gradeCard(true)" disabled>✅ La sabía</button>
+            <button class="fc-btn bad" id="btn-fc-bad" onclick="gradeCard(false)" disabled>❌ No la sabía</button>
+        </div>
+        <div id="fc-summary" class="calc-result" style="max-width:720px;margin:1rem auto;"></div>
+        <div style="text-align:center;">
+            <button class="calc-button" onclick="resetFlashcards()">🔄 Reiniciar Flashcards</button><br>
+            <button class="fc-link" onclick="borrarHistorial()">Borrar historial acumulado</button>
+        </div>
+    </div>
+</section>
+
+<!-- ============ HERRAMIENTAS ============ -->
+<section id="calculadoras" class="section">
+    <div class="card">
+        <h2>🧮 Herramientas Interactivas</h2>
+        <div id="herramientas-tabs" class="tab-group">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('herramientas-tabs','calc-pI', this)">🎯 Calculadora de pI</button>
+                <button class="tab" onclick="showTab('herramientas-tabs','calc-electroforesis', this)">⚡ Simulador de Electroforesis</button>
+                <button class="tab" onclick="showTab('herramientas-tabs','calc-estructura', this)">🏗️ Identificador de Estructura</button>
+            </div>
+
+            <div id="calc-pI" class="tab-content active">
+                <div class="calculator">
+                    <div class="calc-title">🎯 Calculadora de Punto Isoeléctrico (pI)</div>
+                    <div class="calc-input-group"><label>Selecciona el aminoácido:</label>
+                        <select id="pi-select">
+                            <option value="gly">Glicina (pKa₁=2.3, pKa₂=9.6)</option>
+                            <option value="ala">Alanina (pKa₁=2.3, pKa₂=9.7)</option>
+                            <option value="asp">Ácido aspártico (pKa₁=2.1, pKa_R=3.9, pKa₂=9.8)</option>
+                            <option value="lys">Lisina (pKa₁=2.2, pKa₂=9.0, pKa_R=10.5)</option>
+                            <option value="his">Histidina (pKa₁=1.8, pKa_R=6.0, pKa₂=9.2)</option>
+                        </select>
+                    </div>
+                    <button class="calc-button" onclick="calcularPI()">Calcular pI</button>
+                    <div id="pi-resultado" class="calc-result"></div>
+                </div>
+            </div>
+
+            <div id="calc-electroforesis" class="tab-content">
+                <div class="calculator">
+                    <div class="calc-title">⚡ Simulador de Electroforesis</div>
+                    <div class="calc-input-group"><label>Selecciona el escenario:</label>
+                        <select id="elec-select">
+                            <option value="0">Alanina (pI≈6.0) a pH 6.0</option>
+                            <option value="1">Alanina (pI≈6.0) a pH 3.0</option>
+                            <option value="2">Alanina (pI≈6.0) a pH 9.0</option>
+                            <option value="3">Lisina (pI≈9.8) a pH 6.0</option>
+                            <option value="4">Ácido aspártico (pI≈3.0) a pH 6.0</option>
+                        </select>
+                    </div>
+                    <button class="calc-button" onclick="simularElectroforesis()">Simular migración</button>
+                    <div id="elec-resultado" class="calc-result"></div>
+                </div>
+            </div>
+
+            <div id="calc-estructura" class="tab-content">
+                <div class="calculator">
+                    <div class="calc-title">🏗️ Identificador de Nivel Estructural</div>
+                    <div class="calc-input-group"><label>Selecciona la característica:</label>
+                        <select id="estruct-select">
+                            <option value="0">Secuencia de aminoácidos unidos por enlaces peptídicos</option>
+                            <option value="1">Hélice con 3.6 residuos por vuelta y puentes de H</option>
+                            <option value="2">Hojas β antiparalelas de la fibroína de la seda</option>
+                            <option value="3">Plegamiento 3D con puentes disulfuro entre cadenas laterales</option>
+                            <option value="4">Asociación de 4 subunidades (2α + 2β) en la hemoglobina</option>
+                        </select>
+                    </div>
+                    <button class="calc-button" onclick="identificarEstructura()">Identificar nivel</button>
+                    <div id="estruct-resultado" class="calc-result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ APLICACIONES ============ -->
+<section id="aplicaciones" class="section">
+    <div class="card">
+        <h2>🏥 Aplicaciones Profesionales</h2>
+        <div id="aplicaciones-tabs" class="tab-group">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('aplicaciones-tabs','aplic-medicina', this)">🩺 Medicina Clínica</button>
+                <button class="tab" onclick="showTab('aplicaciones-tabs','aplic-bioq', this)">🧬 Bioquímica</button>
+            </div>
+
+            <div id="aplic-medicina" class="tab-content active">
+                <div class="bio-box"><strong>Enfoque clínico:</strong> Las alteraciones en la estructura de las proteínas son la base de muchas enfermedades.</div>
+                <div class="problem-box"><strong>📋 Problema 1 — Anemia Falciforme:</strong> ¿Qué cambio molecular provoca esta enfermedad y cuáles son sus consecuencias?</div>
+                <details class="solution"><summary>🔍 Ver solución</summary>
+                    <p>Una mutación puntual cambia un <strong>ácido glutámico por valina</strong> en la posición 6 de la cadena β de la hemoglobina. Este cambio de un aminoácido polar a uno hidrofóbico provoca la <strong>agregación</strong> de las moléculas de hemoglobina, deformando el eritrocito en forma de hoz, lo que causa oclusión vascular e isquemia.</p>
+                </details>
+                <div class="problem-box"><strong>📋 Problema 2 — Desnaturalización por Fiebre:</strong> ¿Por qué una temperatura corporal >40°C puede ser letal?</div>
+                <details class="solution"><summary>🔍 Ver solución</summary>
+                    <p>El calor excesivo <strong>desnaturaliza las proteínas</strong>, rompiendo las interacciones no covalentes (puentes de H, fuerzas hidrofóbicas) que mantienen las estructuras 2°, 3° y 4°. Las enzimas pierden su sitio activo y su función catalítica, provocando un fallo metabólico generalizado.</p>
+                </details>
+            </div>
+
+            <div id="aplic-bioq" class="tab-content">
+                <div class="pharma-box"><strong>Enfoque molecular:</strong> La relación entre estructura y función es el principio central de la bioquímica proteica.</div>
+                <div class="problem-box"><strong>📋 Problema 1 — Insulina y Puentes Disulfuro:</strong> ¿Por qué la insulina requiere puentes disulfuro para su función?</div>
+                <details class="solution"><summary>🔍 Ver solución</summary>
+                    <p>La insulina está formada por dos cadenas (A de 21 aa y B de 30 aa) unidas por <strong>puentes disulfuro</strong>. Estos enlaces covalentes estabilizan la estructura terciaria/cuaternaria necesaria para que la hormona se una correctamente a su receptor. Si se rompen (reducción), la insulina pierde su actividad biológica.</p>
+                </details>
+                <div class="problem-box"><strong>📋 Problema 2 — Experimento de Anfinsen:</strong> ¿Qué demostró la renaturalización de la ribonucleasa?</div>
+                <details class="solution"><summary>🔍 Ver solución</summary>
+                    <p>Al desnaturalizar la ribonucleasa con urea y mercaptoetanol (rompiendo disulfuros), y luego eliminar estos agentes, la proteína se <strong>renaturalizó espontáneamente</strong> y recuperó su actividad. Esto demostró que toda la información necesaria para el plegamiento tridimensional correcto está contenida en su <strong>estructura primaria</strong> (secuencia de aminoácidos).</p>
+                </details>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ MNEMOTECNIAS ============ -->
+<section id="mnemotecnias" class="section">
+    <div class="card">
+        <h2>🧠 Mnemotecnias y Reglas de Oro</h2>
+        <div class="mnemonic-card"><div class="mnemonic-title">🧬 "Solo L en la vida"</div><p>Todos los aminoácidos que forman las proteínas humanas tienen configuración <strong>L</strong> (NH₂ a la izquierda en Fischer). Los D-aminoácidos son raros (paredes bacterianas, algunos antibióticos).</div></div>
+        <div class="mnemonic-card"><div class="mnemonic-title">⚖️ "Zwitterión = Carga Cero"</div><p>A pH neutro, el aminoácido es un ión dipolar: <strong>-NH₃⁺</strong> (protonado) y <strong>-COO⁻</strong> (desprotonado). Carga neta = 0.</div></div>
+        <div class="mnemonic-card"><div class="mnemonic-title">🎯 "pI = Promedio de los vecinos"</div><p>El pI siempre es el promedio de los dos pKa que flanquean la especie de carga neta cero. Para aa neutros: (pKa₁+pKa₂)/2. Para ácidos: (pKa₁+pKa_R)/2. Para básicos: (pKa₂+pKa_R)/2.</div></div>
+        <div class="mnemonic-card"><div class="mnemonic-title">🔗 "Cisteína hace puentes, Cistina es el puente"</div><p><strong>Cisteína</strong> = aminoácido con grupo -SH. <strong>Cistina</strong> = dímero de dos cisteínas unidas por un puente disulfuro (-S-S-).</div></div>
+        <div class="mnemonic-card"><div class="mnemonic-title">🏗️ "1°=Secuencia, 2°=Hélice/Lámina, 3°=3D, 4°=Subunidades"</div><p>Niveles estructurales: <strong>1°</strong> (covalente), <strong>2°</strong> (puentes H del esqueleto), <strong>3°</strong> (interacciones de cadenas R), <strong>4°</strong> (asociación de protómeros).</div></div>
+        <div class="mnemonic-card"><div class="mnemonic-title">🔥 "Desnaturalizar = Perder 2°, 3° y 4°"</div><p>La desnaturalización <strong>no rompe</strong> los enlaces peptídicos. La estructura primaria (secuencia) se conserva intacta.</div></div>
+    </div>
+</section>
+
+<!-- ============ GLOSARIO ============ -->
+<section id="glosario" class="section">
+    <div class="card">
+        <h2>📖 Glosario Interactivo</h2>
+        <p style="margin-bottom:1.5rem;">Haz clic en cada término para ver su definición:</p>
+        <div class="glossary-term" onclick="toggleDefinition(this)"><strong>α-aminoácido</strong><div class="glossary-definition">Aminoácido en el que el grupo amino está unido al carbono adyacente (α) al grupo carboxilo. Todos los aa proteicos son α-aminoácidos.</div></div>
+        <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Aminoácido esencial</strong><div class="glossary-definition">Aminoácido que el organismo humano no puede biosintetizar y debe obtenerse de la dieta (ej. valina, lisina, leucina).</div></div>
+        <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Anfiprótico</strong><div class="glossary-definition">Molécula que puede actuar como ácido (donar H⁺) o como base (aceptar H⁺). Los aminoácidos son anfipróticos.</div></div>
+        <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Zwitterión</strong><div class="glossary-definition">Forma dipolar de un aminoácido con grupo amino protonado (-NH₃⁺) y carboxilo desprotonado (-COO⁻). Carga neta = 0.</div></div>
+        <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Punto isoeléctrico (pI)</strong><div class="glossary-definition">pH al que el aminoácido o péptido tiene carga neta cero. En ese pH no migra en electroforesis.</div></div>
+        <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Enlace peptídico</strong><div class="glossary-definition">Enlace amida que une el grupo α-carboxilo de un aminoácido con el α-amino del siguiente. Tiene carácter parcial de doble enlace por resonancia.</div></div>
+        <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Puente disulfuro</strong><div class="glossary-definition">Enlace covalente -S-S- formado por oxidación de dos grupos tiol (-SH) de cisteínas. Estabiliza estructuras 3° y 4°.</div></div>
+        <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Protómero</strong><div class="glossary-definition">Cada cadena polipeptídica independiente que forma parte de una proteína con estructura cuaternaria.</div></div>
+        <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Desnaturalización</strong><div class="glossary-definition">Pérdida de estructuras 2°, 3° y 4° por agentes físicos o químicos. Se pierde la función biológica, pero la secuencia (1°) se conserva.</div></div>
+    </div>
+</section>
+
+<!-- ============ ERRORES ============ -->
+<section id="errores" class="section">
+    <div class="card">
+        <h2>⚠️ Errores Comunes de Estudiantes</h2>
+        <div class="error-card"><div class="error-title">❌ Error 1: Creer que hay D-aminoácidos en proteínas humanas</div><p><strong>Error:</strong> pensar que las proteínas humanas contienen D-aminoácidos.</p><div class="correction">✓ Corrección: Todas las proteínas humanas están formadas exclusivamente por <strong>L-aminoácidos</strong>.</div></div>
+        <div class="error-card"><div class="error-title">❌ Error 2: Creer que la glicina es quiral</div><p><strong>Error:</strong> considerar a la Gly como centro quiral.</p><div class="correction">✓ Corrección: La glicina tiene R = H, por lo que el Cα tiene dos hidrógenos iguales. <strong>No es quiral</strong> ni presenta actividad óptica.</div></div>
+        <div class="error-card"><div class="error-title">❌ Error 3: Confundir cisteína con cistina</div><p><strong>Error:</strong> usar ambos términos indistintamente.</p><div class="correction">✓ Corrección: <strong>Cisteína</strong> = aminoácido con grupo -SH. <strong>Cistina</strong> = dímero de 2 cisteínas unidas por puente disulfuro (-S-S-).</div></div>
+        <div class="error-card"><div class="error-title">❌ Error 4: Calcular mal el pI de aa con cadena ionizable</div><p><strong>Error:</strong> usar siempre (pKa₁+pKa₂)/2 sin considerar el grupo R.</p><div class="correction">✓ Corrección: Para aa con R ionizable, hay que identificar los dos pKa que flanquean la especie de carga 0. Ácidos: (pKa₁+pKa_R)/2. Básicos: (pKa₂+pKa_R)/2.</div></div>
+        <div class="error-card"><div class="error-title">❌ Error 5: Creer que la desnaturalización rompe enlaces peptídicos</div><p><strong>Error:</strong> pensar que al desnaturalizar una proteína se rompe la secuencia.</p><div class="correction">✓ Corrección: La desnaturalización solo afecta estructuras 2°, 3° y 4°. El enlace peptídico (covalente) <strong>permanece intacto</strong>.</div></div>
+        <div class="tip-box" style="margin-top:2rem;"><strong>💡 Consejo de estudio:</strong> ante cualquier problema de aa pregúntate: 1) ¿Es quiral? 2) ¿Qué tipo de cadena lateral tiene? 3) ¿Cuáles son sus pKa? 4) ¿Cuál es su carga al pH del problema? 5) ¿Hacia dónde migrará en electroforesis?</div>
+    </div>
+</section>
+
+<!-- ============ BIBLIOGRAFÍA ============ -->
+<section id="bibliografia" class="section">
+    <div class="card">
+        <h2>📚 Fuentes Bibliográficas Universitarias</h2>
+        <h3>Libros de Texto Principales</h3>
+        <div class="info-box"><strong>1. Wade, L.G. — "Química Orgánica"</strong><br>• <strong>Cap. 24:</strong> Aminoácidos, Péptidos y Proteínas<br>• 9na edición, Pearson, 2017</div>
+        <div class="info-box"><strong>2. McMurry, J. — "Química Orgánica"</strong><br>• <strong>Cap. 26:</strong> Aminoácidos, Péptidos y Proteínas<br>• 9na edición, Cengage Learning, 2016</div>
+        <div class="info-box"><strong>3. Solomons, T.W.G. & Fryhle, C.B. — "Química Orgánica"</strong><br>• <strong>Cap. 24:</strong> Aminoácidos y Proteínas<br>• 10ma edición, Wiley, 2011</div>
+        <h3>Recursos Especializados</h3>
+        <div class="bio-box"><div><strong>4. Lehninger, A.L. — "Principios de Bioquímica"</strong><br>• Caps. 3-5: aminoácidos, estructura tridimensional de proteínas, función proteica<br>• 7ma ed., Omega,  ite</div></div>
+        <div class="bio-box"><div><strong>5. Voet, D. & Voet, J.G. — "Bioquímica"</strong><br>• Caps. 4-6: aminoácidos, estructura y función de proteínas<br>• 4ta ed., Médica Panamericana, 2016</div></div>
+    </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="quiz" class="section">
+    <div class="card">
+        <h2>🎯 Quiz de Autoevaluación</h2>
+        <p>Cada ciclo muestra <strong>10 preguntas al azar</strong> de una base de <strong>30</strong>. Cada vez que entras a esta pestaña o terminas un ciclo se sortean preguntas nuevas.</p>
+        <div class="quiz-stats">
+            <span class="quiz-stat" id="q-progress-text">Pregunta 1 de 10 • Aciertos: 0</span>
+            <span class="quiz-stat" id="q-history" style="background:#6c757d;"></span>
+        </div>
+        <div class="quiz-progress"><div class="quiz-progress-bar-bg"><div class="quiz-progress-bar" id="q-bar"></div></div></div>
+        <div id="quiz-container"></div>
+        <div id="quiz-result" class="calc-result" style="max-width:720px;margin:1rem auto;"></div>
+        <div style="text-align:center; margin-top:2rem;">
+            <button class="calc-button" onclick="startNewCycle()">🔄 Reiniciar Quiz (nuevo ciclo aleatorio)</button>
+        </div>
+    </div>
+</section>
+
+</div>
+
+<footer class="footer">
+    <p style="font-size:1.2rem; margin-bottom:1rem;">🎓 Universidad Peruana Cayetano Heredia</p>
+    <p>Facultad de Medicina • Departamento de Ciencias Básicas</p>
+    <p style="margin-top:1rem; font-style:italic;">"La química orgánica es el lenguaje de la vida"</p>
+    <p style="margin-top:2rem; font-size:0.9rem;">© 2026 - Material educativo para estudiantes de medicina</p>
+</footer>
+
+<script>
+    // ================= NAVEGACIÓN =================
+    function showSection(sectionId, btn) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+        if (sectionId === 'quiz') startNewCycle();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function showTab(groupId, tabId, btn) {
+        const g = document.getElementById(groupId);
+        g.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        g.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        if (btn) btn.classList.add('active');
+    }
+    function toggleMap(node){ node.parentElement.classList.toggle('open'); }
+    function toggleDefinition(el){
+        const d = el.querySelector('.glossary-definition');
+        d.classList.toggle('show');
+        el.style.background = d.classList.contains('show') ? '#fff9e6' : 'var(--white)';
+    }
+
+    // ================= FLASHCARDS =================
+    const flashcards = [
+     { q:'¿Qué es un α-aminoácido?', a:'Molécula con un Cα unido a: -NH₂, -COOH, -H y un grupo R (cadena lateral).' },
+     { q:'¿Por qué todos los aminoácidos proteicos humanos son L?', a:'Por la estereoespecificidad de las enzimas de biosíntesis. En Fischer, el NH₂ está a la izquierda.' },
+     { q:'¿Cuál es el único aminoácido NO quiral?', a:'La glicina (Gly), porque su R es H y el Cα tiene 2 hidrógenos iguales.' },
+     { q:'Clasificación de aa según polaridad:', a:'No polares (hidrofóbicos), polares neutros, ácidos (negativos pH 7), básicos (positivos pH 7).' },
+     { q:'¿Cuáles son los 2 aa ácidos?', a:'Asp (D) y Glu (E). Tienen carga negativa a pH 7.' },
+     { q:'¿Cuáles son los 3 aa básicos?', a:'His (H), Arg (R) y Lys (K). Tienen carga positiva a pH 7.' },
+     { q:'¿Qué significa "anfiprótico"?', a:'Que puede actuar como ácido (donar H⁺) o base (aceptar H⁺).' },
+     { q:'¿Qué es el zwitterión?', a:'Forma dipolar del aa a pH neutro: -NH₃⁺ y -COO⁻ simultáneamente. Carga neta = 0.' },
+     { q:'¿Qué es el punto isoeléctrico (pI)?', a:'El pH al que el aminoácido tiene carga neta cero. No migra en electroforesis.' },
+     { q:'Fórmula del pI para aa SIN cadena ionizable:', a:'pI = (pKa₁ + pKa₂) / 2. Ej: Alanina pI = (2.34+9.69)/2 = 6.02' },
+     { q:'Fórmula del pI para aa ÁCIDOS:', a:'pI = (pKa₁ + pKa_R) / 2. Ej: Asp pI = (1.88+3.65)/2 ≈ 2.77' },
+     { q:'Fórmula del pI para aa BÁSICOS:', a:'pI = (pKa₂ + pKa_R) / 2. Ej: Lys pI = (8.95+10.53)/2 ≈ 9.74' },
+     { q:'Migración en electroforesis si pH < pI:', a:'El aa tiene carga positiva (catión) → migra al cátodo (polo negativo).' },
+     { q:'Migración en electroforesis si pH > pI:', a:'El aa tiene carga negativa (anión) → migra al ánodo (polo positivo).' },
+     { q:'¿Qué es el enlace peptídico?', a:'Enlace amida entre α-COOH de un aa y α-NH₂ del siguiente, con eliminación de H₂O.' },
+     { q:'Propiedades del enlace peptídico:', a:'Resonancia → carácter de doble enlace parcial C-N. Planar, trans, rígido (no rota).' },
+     { q:'¿Qué es un oligopéptido?', a:'Péptido con menos de 10 aminoácidos. Más de 10 = polipéptido. Más de 50 = proteína.' },
+     { q:'Nomenclatura de péptidos:', a:'Se escriben de N-terminal (izquierda) a C-terminal (derecha). Terminación -il excepto el último.' },
+     { q:'¿Qué es un puente disulfuro?', a:'Enlace covalente -S-S- formado por oxidación de dos grupos -SH de cisteínas.' },
+     { q:'Diferencia entre cisteína y cistina:', a:'Cisteína = aminoácido con -SH. Cistina = dímero de 2 cisteínas con puente -S-S-.' },
+     { q:'Estructura primaria:', a:'Secuencia de aminoácidos unidos por enlaces peptídicos. Es la estructura fundamental.' },
+     { q:'Estructura secundaria:', a:'Disposición local: α-hélice (3.6 aa/vuelta) o hoja β-plegada. Puentes de H del esqueleto.' },
+     { q:'Estructura terciaria:', a:'Plegamiento 3D completo. Interacciones entre R: disulfuros, H, iónicas, hidrofóbicas.' },
+     { q:'Estructura cuaternaria:', a:'Asociación de 2 o más cadenas polipeptídicas (protómeros). Ej: hemoglobina (2α + 2β).' },
+     { q:'¿Qué hace la Prolina en una α-hélice?', a:'Rompe la hélice porque es un iminoácido cíclico que no puede donar puente de H.' },
+     { q:'Proteína completa:', a:'Alimento que aporta todos los aa esenciales en proporciones adecuadas: carne, huevo, leche, pescado.' },
+     { q:'¿Qué es la desnaturalización?', a:'Pérdida de estructuras 2°, 3° y 4°. La primaria (secuencia) se conserva. Se pierde la función.' },
+     { q:'Experimento de Anfinsen:', a:'Ribonucleasa se desnaturaliza con urea + β-mercaptoetanol. Al eliminarlos, se renaturaliza sola. Demuestra que 1° determina 3°.' },
+     { q:'Aminoácidos esenciales (nemotecnia PVT TIM HALL):', a:'Fenilalanina, Valina, Treonina, Triptófano, Isoleucina, Metionina, Histidina, Arginina, Leucina, Lisina.' },
+     { q:'Anemia falciforme: mutación molecular:', a:'En β-globina, Glu⁶ → Val. De hidrofílico a hidrofóbico → agregación de HbS → eritrocitos en hoz.' }
+    ];
+    let fcIndex=0, fcFlipped=false, fcGood=0, fcBad=0, fcDone=false;
+    function fcUpdateStats(){
+        document.getElementById('fc-good').textContent=fcGood;
+        document.getElementById('fc-bad').textContent=fcBad;
+        document.getElementById('fc-left').textContent=Math.max(0,flashcards.length-fcIndex);
+        const tg=parseInt(localStorage.getItem('fc12TotalGood')||'0',10), tb=parseInt(localStorage.getItem('fc12TotalBad')||'0',10);
+        document.getElementById('fc-hist').textContent=tg+' ✓ / '+tb+' ✗';
+        document.getElementById('fc-bar').style.width=(fcIndex/flashcards.length*100)+'%';
+    }
+    function fcRenderCard(){
+        document.getElementById('fc-card').classList.remove('flipped'); fcFlipped=false;
+        document.getElementById('fc-question').textContent=flashcards[fcIndex].q;
+        document.getElementById('fc-answer').innerHTML=flashcards[fcIndex].a;
+        document.getElementById('btn-fc-good').disabled=true; document.getElementById('btn-fc-bad').disabled=true;
+        fcUpdateStats();
+    }
+    function flipCard(){
+        if(fcDone) return;
+        const c=document.getElementById('fc-card'); c.classList.toggle('flipped');
+        fcFlipped=c.classList.contains('flipped');
+        document.getElementById('btn-fc-good').disabled=!fcFlipped;
+        document.getElementById('btn-fc-bad').disabled=!fcFlipped;
+    }
+    function gradeCard(ok){
+        if(!fcFlipped||fcDone) return;
+        if(ok){ fcGood++; localStorage.setItem('fc12TotalGood',String(parseInt(localStorage.getItem('fc12TotalGood')||'0',10)+1)); }
+        else { fcBad++; localStorage.setItem('fc12TotalBad',String(parseInt(localStorage.getItem('fc12TotalBad')||'0',10)+1)); }
+        fcIndex++;
+        if(fcIndex<flashcards.length) { fcRenderCard(); } else { fcFinish(); }
+    }
+    function fcFinish(){
+        fcDone=true;
+        document.getElementById('fc-scene').style.display='none';
+        document.getElementById('fc-controls').style.display='none';
+        const pct=Math.round(fcGood/(fcGood+fcBad)*100);
+        const msg=pct>=80?'🏆 ¡Excelente! Dominas el capítulo 12.':(pct>=60?'💪 ¡Bien! Repasa las que fallaste.':'📚 Repasa Conceptos, Mapa y Errores Comunes.');
+        const s=document.getElementById('fc-summary');
+        s.innerHTML='<strong>📊 Resumen:</strong> ✅ '+fcGood+' • ❌ '+fcBad+' • Precisión <strong>'+pct+'%</strong><br>'+msg;
+        s.classList.add('show'); fcUpdateStats();
+    }
+    function resetFlashcards(){
+        fcIndex=0; fcGood=0; fcBad=0; fcDone=false;
+        document.getElementById('fc-scene').style.display='block';
+        document.getElementById('fc-controls').style.display='flex';
+        document.getElementById('fc-summary').classList.remove('show');
+        fcRenderCard();
+    }
+    function borrarHistorial(){ localStorage.removeItem('fc12TotalGood'); localStorage.removeItem('fc12TotalBad'); fcUpdateStats(); }
+
+    // ================= HERRAMIENTAS =================
+    const piData = {
+        gly: { nombre:'Glicina', tipo:'neutro', pka:[2.3, 9.6], pi:5.95 },
+        ala: { nombre:'Alanina', tipo:'neutro', pka:[2.3, 9.7], pi:6.0 },
+        asp: { nombre:'Ácido aspártico', tipo:'acido', pka:[2.1, 3.9, 9.8], pi:3.0 },
+        lys: { nombre:'Lisina', tipo:'basico', pka:[2.2, 9.0, 10.5], pi:9.75 },
+        his: { nombre:'Histidina', tipo:'basico', pka:[1.8, 6.0, 9.2], pi:7.6 }
+    };
+
+    function calcularPI(){
+        const key = document.getElementById('pi-select').value;
+        const d = piData[key];
+        let formula, explicacion;
+        if (d.tipo === 'neutro'){ formula = '(pKa₁ + pKa₂) / 2'; explicacion = 'No tiene cadena lateral ionizable. Se promedian los dos pKa del esqueleto.'; }
+        else if (d.tipo === 'acido'){ formula = '(pKa₁ + pKa_R) / 2'; explicacion = 'Es un aa ácido. Se promedian los dos pKa más bajos (ambos ácidos).'; }
+        else { formula = '(pKa₂ + pKa_R) / 2'; explicacion = 'Es un aa básico. Se promedian los dos pKa más altos (ambos básicos).'; }
+        
+        const r = document.getElementById('pi-resultado');
+        r.innerHTML = '<strong>'+d.nombre+'</strong><br>pKa: '+d.pka.join(', ')+'<br>Fórmula: '+formula+'<br><strong>pI = <span style="color:#e94560;font-size:1.3em;">'+d.pi.toFixed(2)+'</span></strong><br>💡 '+explicacion;
+        r.classList.add('show');
+    }
+
+    const elecData = [
+        { aa:'Alanina (pI≈6.0)', pH:6.0, carga:0, dest:'NO migra. Está en su punto isoeléctrico (zwitterión).' },
+        { aa:'Alanina (pI≈6.0)', pH:3.0, carga:1, dest:'Migra al CÁTODO (polo -). pH < pI → catión (+).' },
+        { aa:'Alanina (pI≈6.0)', pH:9.0, carga:-1, dest:'Migra al ÁNODO (polo +). pH > pI → anión (-).' },
+        { aa:'Lisina (pI≈9.8)', pH:6.0, carga:1, dest:'Migra al CÁTODO. pH < pI → catión. Es básica, permanece protonada.' },
+        { aa:'Ácido aspártico (pI≈3.0)', pH:6.0, carga:-1, dest:'Migra al ÁNODO. pH > pI → anión. Es ácido, permanece desprotonado.' }
+    ];
+
+    function simularElectroforesis(){
+        const d = elecData[parseInt(document.getElementById('elec-select').value,10)];
+        const r = document.getElementById('elec-resultado');
+        r.innerHTML = '<strong>'+d.aa+'</strong> a pH '+d.pH+'<br>Carga neta: <span style="color:#e94560;font-weight:bold;">'+d.carga+'</span><br><br>📍 '+d.dest;
+        r.classList.add('show');
+    }
+
+    const estructData = [
+        { c:'Secuencia de aminoácidos unidos por enlaces peptídicos', n:'Estructura PRIMARIA', e:'Es la secuencia lineal covalente. Determina todas las demás estructuras.' },
+        { c:'Hélice con 3.6 residuos por vuelta y puentes de H', n:'Estructura SECUNDARIA (α-hélice)', e:'La α-hélice es una estructura secundaria estabilizada por puentes de H entre el C=O y el N-H distante 3 residuos.' },
+        { c:'Hojas β antiparalelas de la fibroína de la seda', n:'Estructura SECUNDARIA (β-laminar)', e:'Las hojas β son estructuras secundarias. La fibroína de la seda está formada por capas de hojas β antiparalelas.' },
+        { c:'Plegamiento 3D con puentes disulfuro entre cadenas laterales', n:'Estructura TERCIARIA', e:'Es la conformación tridimensional completa, con interacciones entre cadenas laterales (R).' },
+        { c:'Asociación de 4 subunidades (2α + 2β) en la hemoglobina', n:'Estructura CUATERNARIA', e:'La hemoglobina tiene 4 protómeros asociados no covalentemente. Es el ejemplo clásico de estructura cuaternaria.' }
+    ];
+
+    function identificarEstructura(){
+        const d = estructData[parseInt(document.getElementById('estruct-select').value,10)];
+        const r = document.getElementById('estruct-resultado');
+        r.innerHTML = '<strong>'+d.c+'</strong><br>Nivel estructural: <span style="color:#e94560;font-size:1.2em;font-weight:bold;">'+d.n+'</span><br><br>💡 '+d.e;
+        r.classList.add('show');
+    }
+
+    // ================= QUIZ (base 30, muestra 10 al azar) =================
+    const quizBank = [
+     { question:'Los aminoácidos que forman las proteínas humanas son:', options:['D-aminoácidos','L-aminoácidos','Mezcla de D y L','Racémicos'], correct:1, explanation:'Todas las proteínas humanas están formadas exclusivamente por L-aminoácidos.' },
+     { question:'¿Cuál es el único aminoácido NO quiral?', options:['Alanina','Glicina','Valina','Prolina'], correct:1, explanation:'La glicina tiene R=H, por lo que el Cα tiene 2 hidrógenos iguales → no es centro quiral.' },
+     { question:'Los aminoácidos ácidos (carga negativa a pH 7) son:', options:['Lys y Arg','Asp y Glu','His y Lys','Cys y Tyr'], correct:1, explanation:'Los únicos dos aminoácidos ácidos son Asp (D) y Glu (E).' },
+     { question:'Los aminoácidos básicos (carga positiva a pH 7) son:', options:['Asp y Glu','His, Arg y Lys','Cys, Met y Tyr','Phe, Trp y Tyr'], correct:1, explanation:'Los tres básicos son Histidina (H), Arginina (R) y Lisina (K).' },
+     { question:'¿Qué es un zwitterión?', options:['Un aminoácido con carga +1','Un aminoácido con carga -1','Una forma dipolar con carga neta 0','Un dímero de cisteínas'], correct:2, explanation:'El zwitterión es la forma dipolar del aminoácido con -NH₃⁺ y -COO⁻ simultáneamente. Carga neta = 0.' },
+     { question:'El punto isoeléctrico (pI) es:', options:['El pH donde la carga neta es +1','El pH donde la carga neta es -1','El pH donde la carga neta es 0','El pH donde todos los grupos están protonados'], correct:2, explanation:'El pI es el pH al que el aminoácido tiene carga neta cero (forma zwitterión).' },
+     { question:'Para un aminoácido sin cadena lateral ionizable, el pI se calcula como:', options:['(pKa₁+pKa₂+pKa₃)/3','(pKa₁+pKa₂)/2','pKa₁ × pKa₂','pKa₁ - pKa₂'], correct:1, explanation:'Sin R ionizable: pI = (pKa₁ + pKa₂) / 2, el promedio de los dos pKa del esqueleto.' },
+     { question:'Para un aminoácido BÁSICO, el pI se calcula como:', options:['(pKa₁+pKa₂)/2','(pKa₁+pKa_R)/2','(pKa₂+pKa_R)/2','(pKa₁+pKa₂+pKa_R)/3'], correct:2, explanation:'En aa básicos, el pI es el promedio de los dos pKa más altos: (pKa₂ + pKa_R) / 2.' },
+     { question:'Para un aminoácido ÁCIDO, el pI se calcula como:', options:['(pKa₁+pKa₂)/2','(pKa₁+pKa_R)/2','(pKa₂+pKa_R)/2','(pKa₂+pKa₃)/2'], correct:1, explanation:'En aa ácidos, el pI es el promedio de los dos pKa más bajos: (pKa₁ + pKa_R) / 2.' },
+     { question:'En electroforesis, si el pH de trabajo es menor que el pI del aminoácido, este:', options:['No migra','Migra al ánodo (polo +)','Migra al cátodo (polo -)','Se desnaturaliza'], correct:2, explanation:'Si pH < pI → carga positiva (catión) → migra al cátodo (polo negativo).' },
+     { question:'En electroforesis, si el pH de trabajo es mayor que el pI del aminoácido, este:', options:['No migra','Migra al ánodo (polo +)','Migra al cátodo (polo -)','Forma disulfuros'], correct:1, explanation:'Si pH > pI → carga negativa (anión) → migra al ánodo (polo positivo).' },
+     { question:'El enlace peptídico es:', options:['Un enlace éster','Un enlace amida','Un enlace glucosídico','Un enlace disulfuro'], correct:1, explanation:'El enlace peptídico es una amida secundaria formada entre α-COOH de un aa y α-NH₂ del siguiente.' },
+     { question:'El enlace peptídico tiene:', options:['Rotación libre','Carácter de doble enlace parcial','Enlace simple puro','Geometría tetraédrica'], correct:1, explanation:'Por resonancia, el enlace C-N tiene carácter parcial de doble enlace, es rígido y planar.' },
+     { question:'La secuencia lineal de aminoácidos es la estructura:', options:['Primaria','Secundaria','Terciaria','Cuaternaria'], correct:0, explanation:'La estructura primaria es la secuencia covalente de aminoácidos unidos por enlaces peptídicos.' },
+     { question:'La α-hélice y la hoja β-plegada son ejemplos de:', options:['Estructura primaria','Estructura secundaria','Estructura terciaria','Estructura cuaternaria'], correct:1, explanation:'Son estructuras secundarias estabilizadas por puentes de H entre grupos del esqueleto peptídico.' },
+     { question:'La α-hélice tiene:', options:['2 residuos por vuelta','3.6 residuos por vuelta','5 residuos por vuelta','10 residuos por vuelta'], correct:1, explanation:'La α-hélice tiene 3.6 residuos por vuelta, con paso de 5.4 Å.' },
+     { question:'El plegamiento tridimensional completo de una cadena es la estructura:', options:['Primaria','Secundaria','Terciaria','Cuaternaria'], correct:2, explanation:'La estructura terciaria es el plegamiento 3D completo, estabilizado por interacciones entre cadenas laterales.' },
+     { question:'La estructura cuaternaria se refiere a:', options:['Secuencia de aa','α-hélices y β-láminas','Plegamiento 3D','Asociación de dos o más protómeros'], correct:3, explanation:'La estructura cuaternaria es la asociación de dos o más cadenas polipeptídicas (protómeros).' },
+     { question:'La hemoglobina (2α + 2β) tiene estructura:', options:['Solo primaria','Hasta secundaria','Hasta terciaria','Hasta cuaternaria'], correct:3, explanation:'La hemoglobina tiene 4 subunidades (2α + 2β), por lo que presenta estructura cuaternaria.' },
+     { question:'Los puentes disulfuro estabilizan:', options:['Solo estructura primaria','Solo estructura secundaria','Estructura terciaria y cuaternaria','Ninguna estructura'], correct:2, explanation:'Los puentes disulfuro (-S-S-) entre cisteínas estabilizan estructuras terciarias y cuaternarias.' },
+     { question:'La cistina es:', options:['Un aminoácido independiente','Un dímero de cisteínas con puente -S-S-','La forma reducida de la cisteína','Un enlace peptídico'], correct:1, explanation:'La cistina es el dímero de 2 cisteínas unidas por un puente disulfuro (-S-S-). No es un aa independiente.' },
+     { question:'La Prolina en una α-hélice:', options:['La estabiliza','La rompe (causa giros)','No tiene efecto','Aumenta el paso'], correct:1, explanation:'La prolina es un iminoácido cíclico que no puede donar puente de H → rompe α-hélices y causa giros β.' },
+     { question:'La desnaturalización de proteínas:', options:['Rompe enlaces peptídicos','Pierde estructuras 2°, 3° y 4°','Pierde la estructura primaria','Convierte aa en péptidos'], correct:1, explanation:'La desnaturalización pierde estructuras 2°, 3° y 4°, pero conserva la primaria (secuencia).' },
+     { question:'El experimento de Anfinsen con ribonucleasa demostró que:', options:['Los aa son quirales','La 1° determina la 3°','Los disulfuros no son importantes','Las proteínas no se pliegan'], correct:1, explanation:'La ribonucleasa se renaturalizó espontáneamente tras eliminar los agentes desnaturalizantes, demostrando que la estructura primaria contiene toda la información para el plegamiento correcto.' },
+     { question:'Los aminoácidos esenciales son aquellos que:', options:['El cuerpo sintetiza fácilmente','No se encuentran en los alimentos','El cuerpo no puede biosintetizar','No forman proteínas'], correct:2, explanation:'Los aa esenciales NO pueden ser biosintetizados por el organismo humano y deben obtenerse de la dieta.' },
+     { question:'La nemotecnia PVT TIM HALL recuerda:', options:['Los aa aromáticos','Los aa ácidos','Los aa esenciales','Los aa básicos'], correct:2, explanation:'PVT TIM HALL: Phe, Val, Thr, Trp, Ile, Met, His, Arg, Leu, Lys = aminoácidos esenciales.' },
+     { question:'La histidina es importante como tampón fisiológico porque:', options:['Es muy ácida','Tiene pKa ≈ 6.0, cercano al pH fisiológico','No se ioniza','Es muy básica'], correct:1, explanation:'La His tiene pKa ≈ 6.0, muy cercano al pH fisiológico (7.4), por lo que puede actuar como tampón en la hemoglobina.' },
+     { question:'En la anemia falciforme, la mutación molecular es:', options:['Val→Glu en β-globina','Glu→Val en β-globina','Lys→Glu en α-globina','His→Pro en β-globina'], correct:1, explanation:'En la posición 6 de la β-globina, se cambia Glu (ácido, hidrofílico) por Val (hidrofóbico), causando polimerización de HbS.' },
+     { question:'Una proteína "completa" es aquella que:', options:['Tiene estructura cuaternaria','Tiene todos los aa esenciales en proporciones correctas','No se desnaturaliza','Tiene muchos disulfuros'], correct:1, explanation:'Las proteínas completas (carne, huevo, leche, pescado) aportan todos los aa esenciales en proporciones adecuadas.' },
+     { question:'La notación D/L de los aminoácidos define:', options:['La actividad óptica','La configuración absoluta','El pI','El pKa'], correct:1, explanation:'D/L define la configuración absoluta (como en monosacáridos), NO la actividad óptica. Un L-aminoácido puede ser dextro o levorrotatorio.' }
+    ];
+    let quizSet=[], qIdx=0, qScore=0, qAnswered=false, cycleDone=false, quizLastSet=[];
+
+    function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); const t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+    function overlapCount(sel, old){ const s=new Set(old.map(q=>q.question)); return sel.filter(q=>s.has(q.question)).length; }
+
+    function startNewCycle(){
+        let sel, tries=0;
+        do { sel=shuffle(quizBank.slice()).slice(0,10); tries++; }
+        while (quizLastSet.length && overlapCount(sel, quizLastSet) > 4 && tries < 30);
+        quizLastSet=sel;
+        quizSet=sel;
+        qIdx=0; qScore=0; qAnswered=false; cycleDone=false;
+        document.getElementById('quiz-result').style.display='none';
+        document.getElementById('quiz-result').classList.remove('show');
+        renderQuestion(); updateQuizHistory();
+    }
+    function renderQuestion(){
+        const q=quizSet[qIdx];
+        document.getElementById('q-progress-text').textContent='Pregunta '+(qIdx+1)+' de 10 • Aciertos: '+qScore;
+        document.getElementById('q-bar').style.width=(qIdx/10*100)+'%';
+        let html='<div class="quiz-container"><div class="quiz-question">'+(qIdx+1)+'. '+q.question+'</div><div class="quiz-options">';
+        q.options.forEach(function(o,i){ html+='<button class="quiz-option" onclick="checkQuiz('+i+', this)">'+o+'</button>'; });
+        html+='</div><div id="quiz-feedback" style="display:none;margin-top:1rem;padding:1rem;border-radius:8px;color:#2c3e50;"></div>';
+        html+='<div style="text-align:center;margin-top:1.2rem;"><button id="btn-next" class="calc-button" style="display:none;" onclick="nextQuestion()">'+(qIdx===9?'📊 Ver resultados':'➡️ Siguiente pregunta')+'</button></div></div>';
+        document.getElementById('quiz-container').innerHTML=html;
+        qAnswered=false;
+    }
+    function checkQuiz(i,btn){
+        if(qAnswered) return; qAnswered=true;
+        const q=quizSet[qIdx];
+        const opts=btn.parentElement.querySelectorAll('.quiz-option');
+        opts.forEach(function(o){ o.disabled=true; });
+        const fb=document.getElementById('quiz-feedback');
+        if(i===q.correct){ btn.classList.add('correct'); qScore++;
+            fb.innerHTML='<span style="color:#2e7d32;font-weight:bold;">✅ ¡Correcto!</span><br>'+q.explanation;
+            fb.style.background='#e8f5e9';
+        } else { btn.classList.add('incorrect'); opts[q.correct].classList.add('correct');
+            fb.innerHTML='<span style="color:#c62828;font-weight:bold;">❌ Incorrecto.</span><br>'+q.explanation;
+            fb.style.background='#ffebee';
+        }
+        fb.style.display='block';
+        document.getElementById('q-progress-text').textContent='Pregunta '+(qIdx+1)+' de 10 • Aciertos: '+qScore;
+        document.getElementById('btn-next').style.display='inline-block';
+    }
+    function nextQuestion(){ if(qIdx<9){ qIdx++; renderQuestion(); } else { finishCycle(); } }
+    function finishCycle(){
+        cycleDone=true;
+        document.getElementById('q-bar').style.width='100%';
+        document.getElementById('quiz-container').innerHTML='';
+        const pct=Math.round(qScore*10);
+        let cycles=parseInt(localStorage.getItem('q12_cycles')||'0',10)+1;
+        const best=Math.max(parseInt(localStorage.getItem('q12_best')||'0',10),pct);
+        const totC=parseInt(localStorage.getItem('q12_totC')||'0',10)+qScore;
+        const totQ=parseInt(localStorage.getItem('q12_totQ')||'0',10)+10;
+        localStorage.setItem('q12_cycles',String(cycles)); localStorage.setItem('q12_best',String(best));
+        localStorage.setItem('q12_totC',String(totC)); localStorage.setItem('q12_totQ',String(totQ));
+        const msg=pct>=80?'🏆 ¡Excelente! Dominas el Capítulo 12.':(pct>=60?'💪 ¡Bien! Repasa los temas fallados en Conceptos y Errores Comunes.':'📚 Necesitas repasar: usa Mapa, Flashcards y Aplicaciones antes del próximo ciclo.');
+        const r=document.getElementById('quiz-result');
+        r.innerHTML='<strong>📊 Resultados del ciclo:</strong> '+qScore+'/10 correctas • <strong style="color:#e94560;">'+pct+'%</strong><br>'+msg+'<br><br>🔄 Pulsa "Reiniciar Quiz" o vuelve a entrar al Quiz para un <strong>nuevo ciclo con preguntas aleatorias</strong>.';
+        r.style.display='block'; r.classList.add('show');
+        document.getElementById('q-progress-text').textContent='Ciclo completado • Aciertos: '+qScore+'/10';
+        updateQuizHistory();
+    }
+    function updateQuizHistory(){
+        const cycles=parseInt(localStorage.getItem('q12_cycles')||'0',10);
+        const best=parseInt(localStorage.getItem('q12_best')||'0',10);
+        const totC=parseInt(localStorage.getItem('q12_totC')||'0',10);
+        const totQ=parseInt(localStorage.getItem('q12_totQ')||'0',10);
+        document.getElementById('q-history').innerHTML='📈 Ciclos: <strong>'+cycles+'</strong> | Mejor: <strong>'+best+'%</strong> | Promedio histórico: <strong>'+(totQ?Math.round(totC/totQ*100):0)+'%</strong>';
+    }
+
+    // ================= INICIALIZACIÓN =================
+    document.addEventListener('DOMContentLoaded', function(){
+        startNewCycle();
+        fcRenderCard();
+    });
+
+    // ============================================================
+    //  AMPLIAR IMÁGENES AL HACER CLIC
+    // ============================================================
+    document.addEventListener('DOMContentLoaded', function() {
+        const imagenes = document.querySelectorAll('.img-container img, .molecule-img');
+        imagenes.forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', function(e) {
+                window.open(this.src, '_blank');
+            });
+        });
+    });
+</script>
+</body>
+</html>
